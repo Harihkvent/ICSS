@@ -1,40 +1,47 @@
-// Dark/Light Mode Toggle
-const toggleButton = document.getElementById('toggle-mode');
-toggleButton.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-});
+document.addEventListener("DOMContentLoaded", () => {
+  const chatOutput = document.getElementById("chat-output");
+  const userInput = document.getElementById("user-input");
+  const sendButton = document.getElementById("send-btn");
+  const toggleButton = document.getElementById("toggle-mode");
 
-// Chatbot Functionality
-const sendButton = document.getElementById('send-btn');
-const chatOutput = document.getElementById('chat-output');
-const userInput = document.getElementById('user-input');
+  toggleButton.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+  });
 
-sendButton.addEventListener('click', function () {
-  const query = userInput.value.trim();
-  if (query) {
-    const userMessage = createMessage(query, 'user');
-    chatOutput.appendChild(userMessage);
+  sendButton.addEventListener("click", sendMessage);
+  userInput.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") sendMessage();
+  });
 
-    const response = getResponse(query);
-    const botMessage = createMessage(response, 'bot');
-    chatOutput.appendChild(botMessage);
+  function sendMessage() {
+    const query = userInput.value.trim();
+    if (!query) return;
 
-    userInput.value = '';
-    chatOutput.scrollTop = chatOutput.scrollHeight; // Scroll to bottom after new message
+    addMessage(query, "user");
+    userInput.value = "";
+
+    fetch("http://127.0.0.1:5000/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query })
+    })
+    .then(response => {
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        return response.json();
+    })
+    .then(data => addMessage(data.response, "bot"))
+    .catch(error => {
+        console.error("Fetch error:", error);
+        addMessage("Error retrieving response!", "bot");
+    });
+}
+
+
+  function addMessage(text, sender) {
+    const messageDiv = document.createElement("div");
+    messageDiv.classList.add(sender === "user" ? "user-message" : "bot-message");
+    messageDiv.textContent = text;
+    chatOutput.appendChild(messageDiv);
+    chatOutput.scrollTop = chatOutput.scrollHeight;
   }
 });
-
-function createMessage(text, sender) {
-  const messageDiv = document.createElement('div');
-  messageDiv.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
-  messageDiv.textContent = text;
-  return messageDiv;
-}
-
-function getResponse(query) {
-  if (query.includes('hello')) return 'Hi! How can I assist you today?';
-  if (query.includes('issue')) return 'I am sorry to hear that. Could you please provide more details about the issue?';
-  if (query.includes('contact')) return 'You can reach our support team at support@company.com';
-  if (query.includes('hours')) return 'Our support team is available from 9 AM to 6 PM, Monday to Friday.';
-  return 'I\'m sorry, I didn\'t understand that. Could you please rephrase your question?';
-}
