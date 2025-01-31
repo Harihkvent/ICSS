@@ -4,16 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - ICSS</title>
-    <link rel="stylesheet" href="C:\MINI-PROJECT\ICSS\styles\style.css">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to IQSS</h1>
-        <p>Click the bot below to chat</p>
-        <div class="bot-icon" onclick="location.href='index.html'">🤖</div>
-        <button onclick="logout()">Logout</button>
-    </div>
+        <header>
+            <h1>Welcome to ICSS</h1>
+            <button class="toggle-mode" onclick="toggleDarkMode()">🌙</button>
+        </header>
 
+        <p class="description">Your AI-powered assistant for intelligent customer support.</p>
+
+        <!-- Bot Icon -->
+        <div class="bot-section">
+            <p>Click the bot below to start chatting</p>
+            <div class="bot-icon" onclick="location.href='index.html'">🤖</div>
+        </div>
+
+        <!-- About Section -->
+        <section class="about">
+            <h2>About ICSS</h2>
+            <p>ICSS (Intelligent Customer Support System) is an AI-powered chatbot designed to assist users with their queries in real time. It provides instant support, debugging assistance, and intelligent suggestions to enhance user experience.</p>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact">
+            <h2>Contact Us</h2>
+            <p>📧 Email: <a href="harikiran19062004@gmail.com">harikiran19062004@gmail.com</a></p>
+            <p>📞 Phone: +1 (123) 456-7890</p>
+        </section>
+
+        <!-- Logout Button -->
+        <button class="logout-btn" onclick="logout()">Logout</button>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; <span id="year"></span> ICSS. All rights reserved.</p>
+        </footer>
+    </div>
 
     <script>
         function logout() {
@@ -24,7 +52,23 @@
         if (!localStorage.getItem("loggedInUser")) {
             window.location.href = "index.html";
         }
+
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            let mode = document.body.classList.contains("dark-mode") ? "dark" : "light";
+            localStorage.setItem("theme", mode);
+            document.querySelector(".toggle-mode").textContent = mode === "dark" ? "☀️" : "🌙";
+        }
+
+        // Load Theme on Page Load
+        window.onload = function() {
+            if (localStorage.getItem("theme") === "dark") {
+                document.body.classList.add("dark-mode");
+                document.querySelector(".toggle-mode").textContent = "☀️";
+            }
+            document.getElementById("year").textContent = new Date().getFullYear();
+        }
     </script>
-   
 </body>
 </html>
