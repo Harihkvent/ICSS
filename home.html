@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - ICSS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to IQSS</h1>
+        <p>Click the bot below to chat</p>
+        <div class="bot-icon" onclick="location.href='index.html'">🤖</div>
+        <button onclick="logout()">Logout</button>
+    </div>
+
+
+    <script>
+        function logout() {
+            localStorage.removeItem("loggedInUser");
+            window.location.href = "index.html";
+        }
+
+        if (!localStorage.getItem("loggedInUser")) {
+            window.location.href = "index.html";
+        }
+    </script>
+   
+</body>
+</html>
