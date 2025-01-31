@@ -1,13 +1,16 @@
-/* General Styles */
+/* Root Variables */
 :root {
-    --bg-light: #ffffff;
-    --text-light: #333333;
+    --bg-light: #f4f4f4;
+    --text-light: #333;
     --bg-dark: #121212;
     --text-dark: #f1f1f1;
+    --primary-color: #007bff;
+    --secondary-color: #ff4081;
 }
 
+/* Global Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
@@ -16,37 +19,109 @@ body {
     height: 100vh;
     background-color: var(--bg-light);
     color: var(--text-light);
+    text-align: center;
     transition: background 0.3s, color 0.3s;
 }
 
+/* Full-Screen Container */
 .container {
-    text-align: center;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background: rgba(255, 255, 255, 0.9);
     width: 90%;
-    max-width: 400px;
+    max-width: 800px;
+    padding: 30px;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
 }
 
-input, button {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+/* Header */
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
 }
 
-button {
-    background-color: #007bff;
-    color: white;
+/* Bot Icon */
+.bot-icon {
+    font-size: 120px;
     cursor: pointer;
-    border: none;
+    margin: 20px 0;
+    transition: transform 0.3s ease-in-out;
 }
 
-button:hover {
+.bot-icon:hover {
+    transform: scale(1.2) rotate(5deg);
+}
+
+/* About Section */
+.about {
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Contact Section */
+.contact {
+    margin-top: 20px;
+    font-size: 1rem;
+}
+
+.contact a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact a:hover {
+    text-decoration: underline;
+}
+
+/* Buttons */
+button {
+    width: 100%;
+    max-width: 250px;
+    padding: 12px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.logout-btn {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+}
+
+.logout-btn:hover {
     background-color: #0056b3;
+}
+
+/* Dark Mode Toggle */
+.toggle-switch {
+    background: var(--primary-color);
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    transition: 0.3s;
+}
+
+.toggle-switch:hover {
+    background: #0056b3;
+}
+
+/* Footer */
+.footer {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #777;
 }
 
 /* Dark Mode */
@@ -56,32 +131,29 @@ button:hover {
 }
 
 .dark-mode .container {
-    background: rgba(30, 30, 30, 0.9);
+    background: #1e1e1e;
 }
 
-/* Toggle Switch */
-.toggle-container {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+.dark-mode .toggle-switch {
+    background: var(--secondary-color);
 }
 
-.toggle-switch {
-    cursor: pointer;
-    padding: 10px;
-    border: none;
-    background: #007bff;
-    color: white;
-    border-radius: 5px;
+.dark-mode .logout-btn {
+    background-color: var(--secondary-color);
 }
 
-.toggle-switch:hover {
-    background: #0056b3;
+.dark-mode .logout-btn:hover {
+    background-color: #d81b60;
 }
 
-@media (max-width: 600px) {
-    .container {
-        width: 100%;
-        box-shadow: none;
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
