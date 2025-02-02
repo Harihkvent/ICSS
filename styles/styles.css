@@ -226,3 +226,43 @@ body.dark-mode #user-input {
     padding: 15px;
   }
 }
+
+#mic-btn, #stop-btn {
+  font-size: 14px; /* Small text size */
+  padding: 6px 12px; /* Adjusted padding */
+  width: 40px; /* Consistent width */
+  height: 40px; /* Equal height for circular shape */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%; /* Circular button like ChatGPT */
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+#mic-btn {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+#mic-btn:hover {
+  background-color: #ff1a1a;
+}
+
+#mic-btn:active {
+  transform: scale(0.95);
+}
+
+#stop-btn {
+  background-color: #4d79ff;
+  color: white;
+}
+
+#stop-btn:hover {
+  background-color: #1a53ff;
+}
+
+#stop-btn:active {
+  transform: scale(0.95);
+}
