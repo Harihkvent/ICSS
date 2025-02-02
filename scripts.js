@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let voiceInputUsed = false;
 
+  
   // Language Selection Dropdown
   const languageSelect = document.createElement("select");
   languageSelect.id = "language-select";
