@@ -3,14 +3,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const userInput = document.getElementById("user-input");
   const sendButton = document.getElementById("send-btn");
   const toggleButton = document.getElementById("toggle-mode");
+
+  // Create Mic Button (for voice input)
   const micButton = document.createElement("button");
   micButton.textContent = "🎤";
   micButton.id = "mic-btn";
   document.getElementById("chat-container").appendChild(micButton);
 
+  // Create Stop Button (for stopping speech output)
+  const stopButton = document.createElement("button");
+  stopButton.textContent = "⏹️";
+  stopButton.id = "stop-btn";
+  document.getElementById("chat-container").appendChild(stopButton);
+
   let voiceInputUsed = false;
 
-  
   // Language Selection Dropdown
   const languageSelect = document.createElement("select");
   languageSelect.id = "language-select";
@@ -37,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   micButton.addEventListener("click", startVoiceInput);
+  stopButton.addEventListener("click", stopVoiceOutput);
 
   userInput.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
@@ -100,5 +108,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const speech = new SpeechSynthesisUtterance(text);
     speech.lang = languageSelect.value;
     speechSynthesis.speak(speech);
+  }
+
+  function stopVoiceOutput() {
+    speechSynthesis.cancel();
   }
 });
