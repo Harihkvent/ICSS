@@ -1,0 +1,46 @@
+name: CI Pipeline for ICSS
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      -feature/voice
+      -feature/scratch
+      -feature/metrics
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set Up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt  # Ensure you have a `requirements.txt` file
+          
+      - name: Lint with Flake8
+        run: |
+          pip install flake8
+          flake8 --max-line-length=100 app.py
+
+      - name: Run Tests
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}  # Store API key in GitHub Secrets
+        run: |
+          python -m unittest tests/test_app.py  # Ensure you have `tests/test_app.py`
+
+      - name: Notify on Failure
+        if: failure()
+        run: echo "❌ Build failed! Please check logs."
