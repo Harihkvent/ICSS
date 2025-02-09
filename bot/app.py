@@ -27,7 +27,7 @@ def load_pdf_extract_text(pdf_path):
     return text_chunks
 
 # Store processed embeddings
-pdf_path = r"C:\MINI-PROJECT\ICSS\ICSS.pdf"
+pdf_path = r"C:\MINI-PROJECT\ICSS\Intelligent_Customer_Support_System - Google Docs.pdf"
 text_chunks = load_pdf_extract_text(pdf_path)
 chunk_embeddings = embedder.encode(text_chunks, convert_to_tensor=True)
 

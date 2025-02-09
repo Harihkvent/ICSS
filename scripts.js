@@ -9,6 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
   micButton.textContent = "🎤";
   micButton.id = "mic-btn";
   document.getElementById("chat-container").appendChild(micButton);
+  toggleButton.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+  });
+
+
 
   // Create Stop Button (for stopping speech output)
   const stopButton = document.createElement("button");
