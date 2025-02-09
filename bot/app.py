@@ -10,7 +10,7 @@ from flask_cors import CORS  # Import CORS
   # Enable CORS globally
 
 # Configure Gemini API Key
-GEMINI_API_KEY = "AIzaSyC_7V2xy8XzuQaG3ftdMlPoYNeZDWmzCA0"
+GEMINI_API_KEY = "AIzaSyAu7wh4Bq-IiNEikk4tbZ4ygEh07pmLwwg"
 genai.configure(api_key=GEMINI_API_KEY)
 
 # Load Sentence Transformer Model
