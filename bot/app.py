@@ -10,7 +10,8 @@ from flask_cors import CORS  # Import CORS
   # Enable CORS globally
 
 # Configure Gemini API Key
-GEMINI_API_KEY = "AIzaSyAu7wh4Bq-IiNEikk4tbZ4ygEh07pmLwwg"
+GEMINI_API_KEY = "AIzaSyAqVo8uVmi4wfvcHnF-2XqoPGwgl3VQbn4"
+
 genai.configure(api_key=GEMINI_API_KEY)
 
 # Load Sentence Transformer Model
@@ -27,7 +28,7 @@ def load_pdf_extract_text(pdf_path):
     return text_chunks
 
 # Store processed embeddings
-pdf_path = r"C:\MINI-PROJECT\ICSS\Intelligent_Customer_Support_System - Google Docs.pdf"
+pdf_path = r"C:\MINI-PROJECT\ICSS\AI Receptionist Knowledge Base.pdf"
 text_chunks = load_pdf_extract_text(pdf_path)
 chunk_embeddings = embedder.encode(text_chunks, convert_to_tensor=True)
 
@@ -41,7 +42,7 @@ def retrieve_relevant_chunks(user_query, top_k=3):
 def generate_gemini_response(user_query, retrieved_context):
     """Uses Gemini API to generate a response based on retrieved context."""
     prompt = f"""
-    You are an intelligent assistant. Given the user query and relevant context, generate a helpful response.
+    You are an intelligent assistant. Given the user query and relevant context, generate a helpful response. Response should be short and clear use emoji if needed. Conversations should be respectful
 
     Context: {retrieved_context}
     User Query: {user_query}

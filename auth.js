@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("userEmail", document.getElementById("registerEmail").value);
             localStorage.setItem("userPassword", document.getElementById("registerPassword").value);
             alert("Registration Successful!");
-            window.location.href = "home.html";
+            window.location.href = "homee.html";
         });
     }
 
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
             if (email === localStorage.getItem("userEmail") && password === localStorage.getItem("userPassword")) {
                 localStorage.setItem("loggedInUser", email);
-                window.location.href = "home.html";
+                window.location.href = "homee.html";
             } else {
                 alert("Invalid login credentials!");
             }

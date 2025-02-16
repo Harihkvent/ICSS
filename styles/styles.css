@@ -268,3 +268,11 @@ body.dark-mode #user-input {
 #stop-btn:active {
   transform: scale(0.95);
 }
+
+#language-select {
+  padding: 10px;
+  border: 1px solid var(--input-border);
+  border-radius: 20px;
+  font-size: 1rem;
+  background-color: var(--input-bg);
+}

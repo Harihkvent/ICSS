@@ -1,4 +1,6 @@
 Flask
+flask_cors
+
 sentence-transformers
 torch
 google-generativeai
