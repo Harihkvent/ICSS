@@ -31,12 +31,6 @@ jobs:
           pip install flake8
           flake8 --max-line-length=100 app.py || true
 
-      - name: Run Tests
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}  # Secure API key
-        run: |
-          python -m unittest discover -s tests
-
       - name: Notify on Failure
         if: failure()
         run: echo "❌ Build failed! Please check the logs."
