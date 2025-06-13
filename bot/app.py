@@ -7,6 +7,7 @@ from sentence_transformers import SentenceTransformer
 import google.generativeai as genai  # Corrected Import
 from flask_cors import CORS  # Import CORS
 
+
   # Enable CORS globally
 
 # Configure Gemini API Key
