@@ -11,7 +11,7 @@ from flask_cors import CORS  # Import CORS
   # Enable CORS globally
 
 # Configure Gemini API Key
-GEMINI_API_KEY = "AIzaSyAqVo8uVmi4wfvcHnF-2XqoPGwgl3VQbn4"
+GEMINI_API_KEY = "YOUR_API_KEY"
 
 genai.configure(api_key=GEMINI_API_KEY)
 
