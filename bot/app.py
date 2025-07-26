@@ -29,7 +29,7 @@ def load_pdf_extract_text(pdf_path):
     return text_chunks
 
 # Store processed embeddings
-pdf_path = r"C:\MINI-PROJECT\ICSS\AI Receptionist Knowledge Base.pdf"
+pdf_path = r"path-to-your-file"
 text_chunks = load_pdf_extract_text(pdf_path)
 chunk_embeddings = embedder.encode(text_chunks, convert_to_tensor=True)
 
